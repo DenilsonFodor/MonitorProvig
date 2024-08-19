@@ -1,0 +1,81 @@
+<po-page-default p-title="Provig - Monitor de integração">
+    <po-widget p-title="Filtros">
+        <div class="po-row">
+          <po-datepicker
+            class="po-md-3"
+            [(ngModel)]="filterData.startDate"
+            p-label="Data Inicial"
+          ></po-datepicker>
+          <po-datepicker
+            class="po-md-3"
+            [(ngModel)]="filterData.endDate"
+            p-label="Data Final"
+          ></po-datepicker>
+          <po-select
+            class="po-md-3"
+            (ngModel)="filterData.tipoRegistro"
+            p-label="Tipo Registro"
+            [p-options]="tipoRegistroOptions"
+          ></po-select>
+          <po-select
+            class="po-md-3"
+            (ngModel)="filterData.situacao"
+            p-label="Situação"
+            [p-options]="situacaoOptions"
+          ></po-select>
+        </div>
+        <div class="po-row">
+          <po-input
+            class="po-md-3"
+            p-label="Chave RM"
+            (p-maxlength)=60
+            [(ngModel)]="filterData.chaveRm"
+            p-clean="true"
+          ></po-input>
+          <po-input
+            class="po-md-3"
+            p-label="Chave Iris"
+            (p-maxlength)=10
+            [(ngModel)]="filterData.chaveIris"
+            p-clean="true"
+          ></po-input>
+        </div>
+        <div class="po-row">
+          <div class="po-md-11"></div>
+          <po-button
+            p-label="Atualizar"
+            p-type="primary"
+            class="po-md-1"
+            (p-click)="onUpdate()"
+          ></po-button>
+        </div>
+      </po-widget>
+      
+      <po-widget>
+        <po-table
+          [p-columns]="tableColumns"
+          [p-actions]="tableActions"
+          [p-items]="tableData"
+          (p-show-more)="onShowMore()"
+          [p-show-more-disabled]="!(hasMore$ | async)"
+        ></po-table>
+      </po-widget>
+    
+      <!--<div *ngIf="situacao:value === 'Aguardando'">teste</div> -->
+    
+      <div class="po-row"> 
+        <po-modal p-title="Observação" #modal
+          [p-primary-action]="confirm"
+          [p-secondary-action]="close">
+          <po-textarea 
+            name="TextArea" 
+            [(ngModel)]="textarea" 
+            p-label="Digite as informações"> 
+          </po-textarea>
+    
+        </po-modal>
+        
+      </div> 
+
+  
+</po-page-default>
