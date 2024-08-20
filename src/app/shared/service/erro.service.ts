@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { BaseService } from './base.service';
 
-const endpoint = `${environment.url}/v1/espgapi0002`;
+const endpoint = `${environment.url + environment.api}/espgapi0002`;
 
 @Injectable({
   providedIn: 'root',

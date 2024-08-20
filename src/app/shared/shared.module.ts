@@ -25,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    PoPageModule
   ]
 })
-export class SharedModule { }
+export class SharedModule {}

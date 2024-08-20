@@ -13,13 +13,18 @@
           ></po-datepicker>
           <po-select
             class="po-md-3"
-            (ngModel)="filterData.tipoRegistro"
+            [ngModel]="filterData.tipoRegistro"
+            (ngModelChange)="filterData.tipoRegistro = $event"
+            name="tipoRegistro"
             p-label="Tipo Registro"
             [p-options]="tipoRegistroOptions"
           ></po-select>
+        
           <po-select
             class="po-md-3"
-            (ngModel)="filterData.situacao"
+            [ngModel]="filterData.situacao"
+            (ngModelChange)="filterData.situacao = $event"
+            name="situacao"
             p-label="Situação"
             [p-options]="situacaoOptions"
           ></po-select>
@@ -57,7 +62,7 @@
           [p-actions]="tableActions"
           [p-items]="tableData"
           (p-show-more)="onShowMore()"
-          [p-show-more-disabled]="!(hasMore$ | async)"
+          [p-show-more-disabled]="(hasMore$ | async)"
         ></po-table>
       </po-widget>
     

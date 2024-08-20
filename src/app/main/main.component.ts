@@ -32,13 +32,13 @@ export class MainComponent implements OnInit{
   };
 
   tipoRegistroOptions: PoSelectOption[] = [
-    { label: 'Todos', value: '' },
+    { label: 'Todas', value: ' ' },
     { label: 'Adiantamento', value: '1' },
     { label: 'Fatura', value: '0' },
   ];
   
   situacaoOptions: PoSelectOption[] = [
-    { label: 'Todas', value: '' },
+    { label: 'Todas', value: ' ' },
     { label: 'Pendente', value: 'Pendente' },
     { label: 'Com erros', value: 'Com erros' },
     { label: 'Aguardando Observação', value: 'Aguardando' },

@@ -3,36 +3,39 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
 
+var header = new HttpHeaders().set('Authorization', "Basic " + btoa(environment.auth))
+
 @Injectable({
-    providedIn: 'root',
-  })
+  providedIn: 'root',
+})
 export class BaseService {
-    options: any = {};
+  //private headers: HttpHeaders;
 
-    constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {
+    /*
+    this.headers = new HttpHeaders().append(
+      "Authorization",
+      "Basic " + btoa(environment.auth)
+    );
+    */
+  }
 
-      this.options = this.options.append(
-          "Authorization",
-          "Basic " + btoa(environment.auth)
-      );
-    }
-    
-    putObs(url:string, obj:any ): Observable<any> { 
-        return this.http.post(url, obj, {headers: this.options});
-    }
+  putObs(url: any, obj: any): Observable<any> {
+    return this.http.put(url, obj, { headers: header });
+  }
 
-    getReg(url:string, filter:any = null, lock = true): Observable<any> {
-        this.options = this.options.delete("X-Totvs-Screen-Lock");
-        this.options = this.options.append("X-Totvs-Screen-Lock",lock.toString()); 
+  getReg(url: any, filter: any = null, lock: boolean = true): Observable<any> {
+    let headers = header.delete("X-Totvs-Screen-Lock");
+        headers = header.append("X-Totvs-Screen-Lock", lock.toString());
 
-        return this.http.get(url, {        
-            headers: this.options,
-            withCredentials: true,
-            params:filter
-        });
-    }
+    const params = new HttpParams({ fromObject: filter });
 
-
-   
+    return this.http.get(url, {
+      headers: headers,
+      withCredentials: true,
+      params: params,
+    });
+  }
 }
+
 
