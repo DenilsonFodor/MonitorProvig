@@ -1,0 +1,6 @@
+<po-table
+  [p-columns]="tableColumns"
+  [p-items]="tableData"
+  (p-show-more)="onShowMore()"
+  [p-show-more-disabled]="!(hasMore$ | async)"
+></po-table>

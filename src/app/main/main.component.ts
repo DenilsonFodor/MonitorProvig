@@ -71,7 +71,7 @@ export class MainComponent implements OnInit{
       width: '10%',
       type: 'label',
       labels: [
-        { label: 'Aguardando Observação', value: 'Aguardando', color: 'color-11' },
+        { label: 'Aguardando Observação', value: 'Aguardando', color: 'color-09' },
         { label: 'Pendente', value: 'Pendente', color: 'color-08' },
         { label: 'Com erros', value: 'Com erros', color: 'color-07' },
         { label: 'Processado', value: 'Processado', color: 'color-11' },
@@ -95,7 +95,7 @@ export class MainComponent implements OnInit{
 
   tableActions: PoTableAction[] = [
     { label: 'Alterar Observação', action: this.onAtuObs.bind(this) },
-    { label: 'Detalhes', action: this.onDetail.bind(this) },
+    { label: 'Detalhes',           action: this.onDetail.bind(this) },
   ];
 
   tableData: any = [];
@@ -137,7 +137,7 @@ export class MainComponent implements OnInit{
       this.poModal.open();
     };
   }
-  
+
   closeModal() {
     this.poModal.close();
   }
@@ -168,11 +168,20 @@ export class MainComponent implements OnInit{
       this.hasMore$ = response.hasNext;
     });
   }
-    
 
   onDetail(args: any) {
-    localStorage.setItem("tableData", JSON.stringify(this.tableData));
-    this.router.navigate(['/mensagem', args['rowid']]);
+    // Armazena os dados da tabela no localStorage
+    localStorage.setItem('tableData', JSON.stringify(this.tableData));
+  
+    // Garante que 'rowid' existe nos argumentos antes de tentar navegar
+    const rowId = args?.rowid;
+  
+    if (rowId !== undefined) {
+      // Navega para a rota '/mensagem' passando 'rowid' como parâmetro
+      this.router.navigate(['/mensagem', rowId]);
+    } else {
+      console.error('rowid não encontrado nos argumentos:', args);
+    }
   }
 
   setObservacao() {
@@ -181,7 +190,6 @@ export class MainComponent implements OnInit{
     let objEntrada:any = {};
     objEntrada["r-rowid"] = this.objAtual.rowid;
     objEntrada["observacao"] = this.textarea;
-    
     this.service.setObservacao(objEntrada).subscribe((result) => {
       if(result.sucesso == true) {
         this.onUpdate(); 

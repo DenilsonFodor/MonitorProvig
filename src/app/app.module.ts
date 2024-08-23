@@ -4,20 +4,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { APP_BASE_HREF } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
+import { MainComponent } from './main/main.component';
+import { MensagemComponent } from './mensagem/mensagem.component';
+import { ErroComponent } from './erro/erro.component';
+import { HistoricoComponent } from './historico/historico.component';
+import { MainModule } from './main/main.module';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    
   ],
-  providers: [
-    {
-      provide: APP_BASE_HREF,
-      useValue: getBaseHref()
-    }
-  ],
+  providers: [],
       
   bootstrap: [AppComponent]
 })

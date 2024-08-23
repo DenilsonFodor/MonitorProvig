@@ -1,0 +1,37 @@
+<po-widget p-title="Detalhes">
+    <div *ngIf="data" class="po-row">
+      <po-input
+        class="po-md-4"
+        p-label="Chave RM"
+        p-readonly="true"
+        [(ngModel)]="data.referencia"
+      ></po-input>
+      <po-input
+        class="po-md-2"
+        p-label="Chave Iris"
+        p-readonly="true"
+        [(ngModel)]="data['id-iris']"
+      ></po-input>
+      <po-datepicker
+        class="po-md-2"
+        p-label="Data"
+        p-readonly="true"
+        [(ngModel)]="dataIntegracao"
+      ></po-datepicker>
+      <po-input
+        class="po-md-2"
+        p-label="Tipo"
+        p-readonly="true"
+        [(ngModel)]="tipoRegistro"
+      >
+      </po-input>
+      <po-input
+        class="po-md-2"
+        p-label="Situação"
+        p-readonly="true"
+        [(ngModel)]="data.situacao"
+      >
+      </po-input>
+    </div>
+  </po-widget>
+  

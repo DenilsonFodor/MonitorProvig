@@ -5,14 +5,17 @@ import { environment } from '../../../environments/environment';
 import { BaseService } from './base.service';
 
 const endpoint = `${environment.url + environment.api}/espgapi0003`;
+var header = new HttpHeaders().set('Authorization', "Basic " + btoa(environment.auth))
 
 @Injectable({
   providedIn: 'root',
 })
-export class HistoricoService extends BaseService {
+export class HistoricoService  {
   
-  public getAll(rowid:any): Observable<any> {
-    return this.getReg(`${endpoint}/${rowid}`);
+  constructor(private http: HttpClient) {}
+
+  public getOne(rowid: string): Observable<any> {
+    return this.http.get(endpoint + '/' + rowid, {headers: header});
   }
   /*
   public getDetails(page: number = 1, id: number): Observable<any> {

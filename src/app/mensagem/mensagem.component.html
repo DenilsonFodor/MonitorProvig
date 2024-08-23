@@ -1,1 +1,58 @@
-<p>mensagem works!</p>
+<po-page-detail p-title="Provig - Informações sobre a mensagem" (p-back)="onBack()">
+
+    <app-detalhe [rowid]="rowid"></app-detalhe>
+  
+    <po-widget (p-height)='800'>
+      <po-tabs (p-small)=false> 
+        
+        <po-tab 
+          [p-active]='true'
+          [p-disabled]='false'
+          [p-hide]='false'
+          p-label="Histórico">
+
+          <app-historico [rowid]="rowid"></app-historico>
+        </po-tab>
+
+        <po-tab 
+          [p-active]=false
+          [p-disabled]=false
+          [p-hide]=false
+          p-label="Erros">
+          
+          <app-erro [rowid]="rowid"></app-erro>
+        </po-tab>
+
+        <po-tab 
+          [p-active]=false
+          [p-disabled]=false
+          [p-hide]=false
+          p-label="JSON">
+
+          <po-textarea
+            [(ngModel)]="data.dados"
+            [ngModelOptions]="{standalone: true}"
+            [p-rows]="20"
+            [p-readonly]="true"
+            >
+          </po-textarea>
+
+
+
+          <!--ace-editor
+          [(text)]="data.dados"
+          mode="json"
+          theme="chrome"
+          readOnly="true"
+          style="height: 700px; width: 100%"
+        ></ace-editor-->
+
+        </po-tab>
+
+      </po-tabs>
+
+      
+
+    </po-widget>
+
+  </po-page-detail>

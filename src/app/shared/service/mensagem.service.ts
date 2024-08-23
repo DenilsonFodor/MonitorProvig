@@ -11,36 +11,19 @@ var header = new HttpHeaders().set('Authorization', "Basic " + btoa(environment.
   providedIn: 'root',
 })
 export class MensagemService {
-  //export class MensagemService extends BaseService {
-  /*
-  public getAll(filter: any): Observable<any> {
-    return this.getReg(`${endpoint}`, filter);
-  }*/
 
-    constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
+  public getAll(filtros:any): Observable<any> {
+    return this.http.get<any>(endpoint,{headers:header, params:filtros});
+  }
 
-    public getAll(filtros:any): Observable<any> {
-      return this.http.get<any>(endpoint,{headers:header, params:filtros});
-    }
-/*
   public getOne(rowid: string): Observable<any> {
-    return this.getReg(`${endpoint}/${rowid}`);
+      return this.http.get(endpoint + '/' + rowid, {headers: header});
   }
-*/
-  /*
-  public getDetails(page: number = 1, id: number): Observable<any> {
-    return null;
-  }
-    */
     
-/*
   public setObservacao(jsonEntrada: any): Observable<any> {
-    return this.putObs(`${endpoint}`,jsonEntrada);
+    return this.http.post(endpoint, jsonEntrada, { headers: header });
   }
-*/
-public setObservacao(jsonEntrada: any): Observable<any> {
-  return this.http.put(endpoint, jsonEntrada, { headers: header });
-}
 
 }

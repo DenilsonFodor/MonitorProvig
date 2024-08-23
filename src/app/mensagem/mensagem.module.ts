@@ -1,17 +1,26 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { MensagemRoutingModule } from './mensagem-routing.module';
 import { MensagemComponent } from './mensagem.component';
+import { DetalheComponent } from '../detalhe/detalhe.component';
+import { ErroComponent } from '../erro/erro.component';
+import { HistoricoComponent } from '../historico/historico.component';
+import { SharedModule } from '../shared/shared.module';
+import { PoCodeEditorModule } from '@po-ui/ng-code-editor';
 
 
 @NgModule({
   declarations: [
-    MensagemComponent
+    MensagemComponent, 
+    DetalheComponent, 
+    ErroComponent, 
+    HistoricoComponent
   ],
   imports: [
-    CommonModule,
-    MensagemRoutingModule
+    SharedModule,
+    MensagemRoutingModule,
+    PoCodeEditorModule
+    
   ]
 })
 export class MensagemModule { }
